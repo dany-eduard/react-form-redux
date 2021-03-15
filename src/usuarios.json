@@ -1,4 +1,4 @@
-{
+[
     {
         "id": 12345641545,
         "name": "Daniel Eduardo",
@@ -22,7 +22,7 @@
     },
     {
         "id": 12345641545,
-        "name": "Andrea Mercedez",
+        "name": "Andrea Mercedes",
         "address": "Calle 12 #431-43",
         "number-phone": "33213214145",
         "email": "andrea@example.com"
@@ -34,4 +34,4 @@
         "number-phone": "33213214145",
         "email": "almagro@example.com"
     }
-}
+]
