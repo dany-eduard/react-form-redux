@@ -4,6 +4,7 @@ import reducer from "./ducks";
 
 const rootReducer = combineReducers({
   dataUsuarios: reducer,
+  dataFormulario: {},
   mostrarFormulario: false,
 });
 

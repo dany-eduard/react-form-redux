@@ -1,29 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Container, Table } from "react-bootstrap";
-/* import { obtenerUsuarios } from "../redux/ducks"; */
+import { obtenerUsuarios, mostrarOcultarFormulario } from "../redux/ducks";
 import Formulario from "./Formulario";
 
 const TablaReports = () => {
-  useEffect(() => {
-    document.title = "Usuarios";
+  const dispatch = useDispatch();
+
+  const mostrarFormulario = useSelector((store) => {
+    console.log(store);
+    return store.dataUsuarios.mostrarFormulario;
   });
 
-  const [show, setShow] = useState(true); // Mostrar y ocultar botones
+  console.log("🚀 ~ file: TablaReports.jsx ~ line 19 ~ TablaReports ~ mostrarFormulario", mostrarFormulario)
+  
+  const [show, setShow] = useState(mostrarFormulario);
+  console.log("🚀 ~ file: TablaReports.jsx ~ line 20 ~ TablaReports ~ show", show)
+  
+  useEffect(() => {
+    document.title = "Usuarios";
+    obtenerUsuarios(dispatch);
+  }, []);
 
-  function mostrarFormulario() {
-    setShow(!show);
-  }
+  // const dispatch = useDispatch();
+
+  // dispatch({
+  //   type: "OBTENER_DATOS_JSON",
+  //   payload: [{}],
+  // });
+
+  // const [show, setShow] = useState(true); // Mostrar y ocultar botones
+
+  // function mostrarFormulario() {
+  //   setShow(!show);
+  // }
 
   const usuarios = useSelector((store) => store.dataUsuarios.dataUsuarios);
   console.log("usuarios", usuarios);
-  /* const dispatch = useDispatch(); */
 
   return (
     <Container>
-      {show ? (
+      {!show ? (
         <Button
-          onClick={() => mostrarFormulario()}
+          onClick={() => mostrarOcultarFormulario(true)(dispatch)}
           type="button"
           variant="primary"
         >
@@ -44,22 +63,17 @@ const TablaReports = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1001835011</td>
-            <td>Daniel Eduardo</td>
-            <td>Calle 12 #26</td>
-            <td>3017498942</td>
-            <td>dany@email.com</td>
-          </tr>
-          {usuarios.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.address}</td>
-                <td>{item.phone}</td>
-                <td>{item.email}</td>
-              </tr>
-            ))}
+          {usuarios && usuarios.length
+            ? usuarios.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.address}</td>
+                  <td>{item.phone}</td>
+                  <td>{item.email}</td>
+                </tr>
+              ))
+            : null}
         </tbody>
       </Table>
     </Container>

@@ -29,9 +29,10 @@ const Formulario = () => {
 
   const dispatch = useDispatch();
 
+
   const [show, setShow] = useState(true); // Mostrar y ocultar botones
   function mostrarFormulario() {
-    setShow(show);
+    setShow(false);
   }
 
   return (
@@ -108,7 +109,6 @@ const Formulario = () => {
           onClick={() => mostrarFormulario()}
           variant="danger"
           type="button"
-          onChange={handleInputChange}
         >
           Cancelar
         </Button>

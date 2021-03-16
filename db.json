@@ -1,0 +1,95 @@
+{
+  "usuarios": [
+    {
+      "id": 1234566441545,
+      "name": "Daniel Eduardo",
+      "address": "Calle 12 #431-43",
+      "phone": "33213214145",
+      "email": "dany@example.com"
+    },
+    {
+      "id": 123456431545,
+      "name": "Eduardo Daniel",
+      "address": "Calle 43 #32-565",
+      "phone": "33213214145",
+      "email": "eduardo@example.com"
+    },
+    {
+      "id": 1234564132545,
+      "name": "Camila Restrepo",
+      "address": "Calle 12 #123-43",
+      "phone": "33213214145",
+      "email": "camila@example.com"
+    },
+    {
+      "id": 12343245641545,
+      "name": "Andrea Mercedes",
+      "address": "Calle 12 #431-43",
+      "phone": "33213214145",
+      "email": "andrea@example.com"
+    },
+    {
+      "id": 12345643241545,
+      "name": "Daniel Almagro",
+      "address": "Calle 12 #431-43",
+      "phone": "33213214145",
+      "email": "almagro@example.com"
+    },
+    {
+      "id": 65463676,
+      "name": "Daniel Almagro",
+      "address": "Calle 12 #431-43",
+      "phone": "33213214145",
+      "email": "almagro@example.com"
+    },
+    {
+      "id": "73558291",
+      "name": "Daniel Eduardo",
+      "address": "Calle 12 #26B-25, barrio El Concorde",
+      "phone": "",
+      "email": "admin@admin"
+    },
+    {
+      "id": "46562135465498",
+      "name": "Daniel Eduardo",
+      "address": "Calle 12 #26B-25, barrio El Concorde",
+      "phone": "3017496696",
+      "email": "admin@admin"
+    },
+    {
+      "id": "56574365765",
+      "name": "Jesus Antonio De La Ossa",
+      "address": "Calle 12 #26B-25, barrio El Concorde",
+      "phone": "3017496696",
+      "email": "negoy43764@kakekbet.com"
+    },
+    {
+      "id": "6347657657465",
+      "name": "Daniel Eduardo Almagro",
+      "address": "Calle 12 #26B-25, barrio El Concorde",
+      "phone": "3015207381",
+      "email": "dayannacavadia@gmail.com"
+    },
+    {
+      "id": "547365765",
+      "name": "Daniel Eduardo Almagro",
+      "address": "Calle 12 #26B-25, barrio El Concorde",
+      "phone": "3017496696",
+      "email": "negoy43764@kakekbet.com"
+    },
+    {
+      "id": "365765748",
+      "name": "Daniel Eduardo Almagro",
+      "address": "Calle 12 #26B-25, barrio El Concorde",
+      "phone": "3017496696",
+      "email": "psistemas1@sempertex.com"
+    },
+    {
+      "id": "656256734",
+      "name": "Daniel Eduardo Almagro",
+      "address": "Calle 12 #26B-25, barrio El Concorde",
+      "phone": "3017496696",
+      "email": "salol16914@yutongdt.com"
+    }
+  ]
+}
