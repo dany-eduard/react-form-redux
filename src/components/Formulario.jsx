@@ -12,22 +12,15 @@ const Formulario = () => {
 
   const { id, name, address, phone, email } = formState;
 
-  /* useEffect(() => {
-    effect;
-    return () => {
-      cleanup;
-    };
-  }, [input]); */
+  useEffect(() => {
+    console.log("Holalala");
+  }, []);
 
-  const handleInputChange = ({target}) => {
-    console.log(
-      "🚀 ~ file: Formulario.jsx ~ line 25 ~ handleInputChange ~ e",
-      target.value
-    );
-      setFormState({
-        ...formState,
-        [target.name]
-      })
+  const handleInputChange = ({ target }) => {
+    setFormState({
+      ...formState,
+      [target.name]: target.value,
+    });
   };
 
   const [show, setShow] = useState(true); // Mostrar y ocultar botones
@@ -55,6 +48,7 @@ const Formulario = () => {
               type="text"
               name="name"
               placeholder="Escribe tu nombre"
+              onChange={handleInputChange}
             />
           </Form.Group>
         </Form.Row>
