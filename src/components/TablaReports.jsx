@@ -7,16 +7,25 @@ import Formulario from "./Formulario";
 const TablaReports = () => {
   const dispatch = useDispatch();
 
-  const mostrarFormulario = useSelector((store) => {
-    console.log(store);
-    return store.dataUsuarios.mostrarFormulario;
-  });
+  const mostrarFormulario = useSelector(
+    (store) => store.dataUsuarios.mostrarFormulario
+  );
 
-  console.log("🚀 ~ file: TablaReports.jsx ~ line 19 ~ TablaReports ~ mostrarFormulario", mostrarFormulario)
-  
+  console.log(
+    "🚀 ~ file: TablaReports.jsx ~ line 19 ~ TablaReports ~ mostrarFormulario",
+    mostrarFormulario
+  );
+
   const [show, setShow] = useState(mostrarFormulario);
-  console.log("🚀 ~ file: TablaReports.jsx ~ line 20 ~ TablaReports ~ show", show)
-  
+  console.log(
+    "🚀 ~ file: TablaReports.jsx ~ line 20 ~ TablaReports ~ show",
+    show
+  );
+  const mostrarFormActualizaState = () => {
+    setShow(true);
+    dispatch(mostrarOcultarFormulario(true));
+  };
+
   useEffect(() => {
     document.title = "Usuarios";
     obtenerUsuarios(dispatch);
@@ -42,7 +51,7 @@ const TablaReports = () => {
     <Container>
       {!show ? (
         <Button
-          onClick={() => mostrarOcultarFormulario(true)(dispatch)}
+          onClick={() => mostrarFormActualizaState()}
           type="button"
           variant="primary"
         >
