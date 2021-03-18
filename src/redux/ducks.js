@@ -1,4 +1,5 @@
 import HttpClient from "../helpers/HTTPclient";
+import { getRequest } from "../services/getRequest";
 
 // Consts
 const inicialState = {
@@ -29,32 +30,17 @@ export default function reducer(state = inicialState, action) {
 
 // Actions
 export const obtenerUsuarios = async (dispatch) => {
-  try {
-    const resp = await HttpClient.get("http://localhost:3333/usuarios", {
-      responseMode: "json",
-    });
-    dispatch({
-      type: OBTENER_DATOS_JSON,
-      payload: resp.getData(),
-    });
+  const resp = await getRequest("http://localhost:3333/usuarios");
+  // console.log("🚀 ~ file: Ducks.js ~ line 34 ~ obtenerUsuarios ~ resp", resp);
 
-    // const res = await fetch("http://localhost:3333/usuarios");
-    // const dataUsuarios = await res.json();
-    // console.log("obtenerUsuarios -> ", dataUsuarios);
-    // dispatch({
-    //   type: OBTENER_DATOS_JSON,
-    //   payload: dataUsuarios,
-    // });
-  } catch (error) {
-    console.error(error);
-  }
+  dispatch({
+    type: OBTENER_DATOS_JSON,
+    payload: resp,
+  });
 };
 
 export const guardarUsuario = (formValues) => async (dispatch) => {
-  console.log(
-    "🚀 ~ file: Ducks.js ~ line 48 ~ guardarUsuario ~ dispatch",
-    formValues
-  );
+  console.log("🚀 ~ file: Ducks.js ~ line 48 ~ guardarUsuario ~ dispatch", formValues);
   const jsonDatos = JSON.stringify(formValues);
   try {
     fetch("http://localhost:3333/usuarios", {

@@ -9,9 +9,9 @@ const TablaReports = () => {
   const dispatch = useDispatch();
 
   const mostrarFormulario = useSelector((store) => store.dataUsuarios.mostrarFormulario);
-  console.log("🚀 ~ file: TablaReports.jsx ~ line 19 ~ TablaReports ~ mostrarFormulario", mostrarFormulario)  
+  // console.log("🚀 ~ file: TablaReports.jsx ~ line 19 ~ TablaReports ~ mostrarFormulario", mostrarFormulario)
   const [show, setShow] = useState(mostrarFormulario);
-  console.log("🚀 ~ file: TablaReports.jsx ~ line 20 ~ TablaReports ~ show", show)
+  // console.log("🚀 ~ file: TablaReports.jsx ~ line 20 ~ TablaReports ~ show", show)
 
   const botonMostrarFormulario = () => {
     setShow(true);
@@ -32,7 +32,8 @@ const TablaReports = () => {
 
 
   const usuarios = useSelector((store) => store.dataUsuarios.dataUsuarios);
-  console.log("usuarios", usuarios);
+  // console.log("🚀 ~ file: TablaReports.jsx ~ line 35 ~ TablaReports ~ usuarios", usuarios)
+  
 
   return (
     <>
