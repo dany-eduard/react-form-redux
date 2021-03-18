@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Col } from "react-bootstrap";
 import { useForm } from "./hooks/useForm";
 import { guardarUsuario } from "../redux/ducks";
+import { obtenerUsuarios, mostrarOcultarFormulario } from "../redux/ducks";
 
 const Formulario = () => {
   const [formValues, handleInputChange] = useForm({
@@ -13,27 +14,36 @@ const Formulario = () => {
     email: "",
   });
 
-  const { id, name, address, phone, email } = formValues;
-
   useEffect(() => {
     console.log("Se ejecutó el state del formulario...");
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(
-      "🚀 ~ file: Formulario.jsx ~ line 24 ~ handleSubmit ~ e",
-      formValues
-    );
-  };
+  const { id, name, address, phone, email } = formValues;
 
   const dispatch = useDispatch();
+  const mostrarFormulario = useSelector((store) => store.dataUsuarios.mostrarFormulario);
+  const [show, setShow] = useState(mostrarFormulario);
 
+  // const mostrarFormActualizaState = () => {
+  //   setShow(true);
+  //   dispatch(mostrarOcultarFormulario(false));
+  // };
 
-  const [show, setShow] = useState(true); // Mostrar y ocultar botones
-  function mostrarFormulario() {
+  const ocultarFormulario = () => {
     setShow(false);
-  }
+    dispatch(mostrarOcultarFormulario(false));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("🚀 ~ file: Formulario.jsx ~ line 24 ~ handleSubmit ~ e", formValues);
+    dispatch(guardarUsuario(formValues));
+    ocultarFormulario();
+  };
+
+  // const [show, setShow] = useState(true); // Mostrar y ocultar botones
+  // function mostrarFormulario() {
+  //   setShow(false);
+  // }
 
   return (
     <>
@@ -100,16 +110,12 @@ const Formulario = () => {
         <Button
           variant="primary"
           type="submit"
-          onClick={() => dispatch(guardarUsuario(formValues))}
+          // onClick={() => dispatch(guardarUsuario(formValues))}
         >
           Guardar
         </Button>
 
-        <Button
-          onClick={() => mostrarFormulario()}
-          variant="danger"
-          type="button"
-        >
+        <Button onClick={() => ocultarFormulario()} variant="danger" type="button">
           Cancelar
         </Button>
       </Form>

@@ -7,9 +7,7 @@ import Formulario from "./Formulario";
 const TablaReports = () => {
   const dispatch = useDispatch();
 
-  const mostrarFormulario = useSelector(
-    (store) => store.dataUsuarios.mostrarFormulario
-  );
+  const mostrarFormulario = useSelector((store) => store.dataUsuarios.mostrarFormulario);
 
   console.log(
     "🚀 ~ file: TablaReports.jsx ~ line 19 ~ TablaReports ~ mostrarFormulario",
@@ -17,10 +15,7 @@ const TablaReports = () => {
   );
 
   const [show, setShow] = useState(mostrarFormulario);
-  console.log(
-    "🚀 ~ file: TablaReports.jsx ~ line 20 ~ TablaReports ~ show",
-    show
-  );
+  console.log("🚀 ~ file: TablaReports.jsx ~ line 20 ~ TablaReports ~ show", show);
   const mostrarFormActualizaState = () => {
     setShow(true);
     dispatch(mostrarOcultarFormulario(true));
@@ -45,7 +40,10 @@ const TablaReports = () => {
   // }
 
   const usuarios = useSelector((store) => store.dataUsuarios.dataUsuarios);
-  console.log("usuarios", usuarios);
+  console.log(
+    "🚀 ~ file: TablaReports.jsx ~ line 57 ~ TablaReports ~ usuarios",
+    usuarios
+  );
 
   return (
     <Container>
@@ -53,8 +51,7 @@ const TablaReports = () => {
         <Button
           onClick={() => mostrarFormActualizaState()}
           type="button"
-          variant="primary"
-        >
+          variant="primary">
           Agregar
         </Button>
       ) : (
