@@ -8,53 +8,63 @@ import BtnMostrarForm from "./BtnMostrarForm";
 const Formulario = () => {
   const dispatch = useDispatch();
   const [formValues, handleInputChange] = useForm({
-    id: 0,
+    id: "",
     name: "",
     address: "",
     phone: "",
     email: "",
   });
 
-  const { id, name, address, phone, email } = formValues;
+  // const { id, name, address, phone, email } = formValues;
 
   useEffect(() => {
     console.log("Se ejecutó el state del formulario...");
   }, []);
 
   const mostrarFormulario = useSelector((store) => store.dataUsuarios.mostrarFormulario);
-  const [show] = useState(mostrarFormulario);
+  const [show, setShow] = useState(mostrarFormulario);
 
-  // const botonMostrarFormulario = () => {
-  //   setShow(false);
-  //   dispatch(mostrarOcultarFormulario(false));
+  const ocultarFormulario = () => {
+    setShow(false);
+    dispatch(mostrarOcultarFormulario(false));
+  };
+
+  const botonMostrarFormulario = () => {
+    setShow(true);
+    dispatch(mostrarOcultarFormulario(true));
+  };
+  // const propsBtnGuardar = {
+  //   form: true,
+  //   text: "Guardar",
+  //   variant: "primary",
   // };
 
-  const propsButtonCancelar = {
-    form: false,
-    text: "Cancelar",
-    variant: "danger"
-  }
-
-  const propsButtonAgregar = {
-    form: true,
-    text: "Agregar",
-    variant: "primary"
-  }
+  // const propsBtnCancelar = {
+  //   form: false,
+  //   text: "Cancelar",
+  //   variant: "danger",
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     e.target.reset(); // Limpiar campos
-    console.log("🚀 ~ file: Formulario.jsx ~ line 24 ~ handleSubmit ~ e", formValues);
-/*     botonMostrarFormulario(); */
+    // console.log("🚀 ~ file: Formulario.jsx ~ line 47 ~ handleSubmit ~ formValues", formValues);
+    /* botonMostrarFormulario(); */
+    dispatch(guardarUsuario(formValues));
+    ocultarFormulario();
+  };
+
+  const propsBtnAgregar = {
+    botonMostrarFormulario,
+    form: true,
+    text: "Agregar nuevo usuario",
+    variant: "primary",
   };
 
   return (
     <>
-     {/*  {!show ? (
-             ) : 
-      <BtnMostrarForm propsButton={propsButtonAgregar} />
-      } */}
-       <Form onSubmit={handleSubmit}>
+      {show ? (
+        <Form onSubmit={handleSubmit}>
           <h2>Registrar nuevo usuario</h2>
           <Form.Row>
             <Form.Group as={Col} controlId="fromGridID">
@@ -117,17 +127,24 @@ const Formulario = () => {
           <Button
             variant="primary"
             type="submit"
-            onClick={() => dispatch(guardarUsuario(formValues))}>
+            /* onClick={() => dispatch(guardarUsuario(formValues))} */
+          >
             Guardar
           </Button>
 
-          {/* <Button onClick={() => botonMostrarFormulario()} variant="danger" type="button">
-            Cancelar
-          </Button> */}
-          <BtnMostrarForm propsButton={propsButtonCancelar} />
-        </Form>
+          {/* <BtnMostrarForm propsButton={propsBtnGuardar} /> */}
 
-      <hr />
+          <Button variant="danger" type="button" onClick={() => ocultarFormulario()}>
+            Cancelar
+          </Button>
+          {/* <BtnMostrarForm propsButton={propsBtnCancelar} /> */}
+        </Form>
+      ) : (
+        <BtnMostrarForm propsButton={propsBtnAgregar} />
+      )}
+
+      {/* <hr /> */}
+      {null}
     </>
   );
 };
