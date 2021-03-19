@@ -10,7 +10,7 @@ const TablaReports = () => {
     obtenerUsuarios(dispatch);
   }, []);
 
-  const usuarios = useSelector((store) => store.dataUsuarios.dataUsuarios);
+  const usuarios = useSelector((store) => store.dataUsuarios.dataUsuarios);  
   // console.log("🚀 ~ file: TablaReports.jsx ~ line 35 ~ TablaReports ~ usuarios", usuarios)
 
   return (

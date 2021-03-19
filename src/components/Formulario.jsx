@@ -15,11 +15,13 @@ const Formulario = () => {
     email: "",
   });
 
+
   // const { id, name, address, phone, email } = formValues;
 
   useEffect(() => {
     console.log("Se ejecutó el state del formulario...");
   }, []);
+
 
   const mostrarFormulario = useSelector((store) => store.dataUsuarios.mostrarFormulario);
   const [show, setShow] = useState(mostrarFormulario);
@@ -54,12 +56,15 @@ const Formulario = () => {
     ocultarFormulario();
   };
 
+
   const propsBtnAgregar = {
     botonMostrarFormulario,
     form: true,
     text: "Agregar nuevo usuario",
     variant: "primary",
   };
+
+
 
   return (
     <>
@@ -131,6 +136,7 @@ const Formulario = () => {
           >
             Guardar
           </Button>
+
 
           {/* <BtnMostrarForm propsButton={propsBtnGuardar} /> */}
 
