@@ -1,5 +1,6 @@
 import HttpClient from "../helpers/HTTPclient";
 import { getRequest } from "../services/getRequest";
+import { postRequest } from "../services/postRequest";
 
 // Consts
 const inicialState = {
@@ -31,7 +32,7 @@ export default function reducer(state = inicialState, action) {
 // Actions
 export const obtenerUsuarios = async (dispatch) => {
   const resp = await getRequest("http://localhost:3333/usuarios");
-  // console.log("🚀 ~ file: Ducks.js ~ line 34 ~ obtenerUsuarios ~ resp", resp);
+  // console.log("🚀 ~ file: ducks.js ~ line 34 ~ obtenerUsuarios ~ resp", resp);
 
   dispatch({
     type: OBTENER_DATOS_JSON,
@@ -40,24 +41,15 @@ export const obtenerUsuarios = async (dispatch) => {
 };
 
 export const guardarUsuario = (formValues) => async (dispatch) => {
-  console.log("🚀 ~ file: Ducks.js ~ line 48 ~ guardarUsuario ~ dispatch", formValues);
-  const jsonDatos = JSON.stringify(formValues);
-  try {
-    fetch("http://localhost:3333/usuarios", {
-      method: "POST",
-      body: jsonDatos,
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-    // dispatch({
-    //   type: GUARDAR_REGISTRO,
-    //   payload: [jsonDatos],
-    // })
-    obtenerUsuarios(dispatch);
-  } catch (error) {
-    console.log(error);
-  }
+  const data = JSON.stringify(formValues);
+  const request = await postRequest("http://localhost:3333/usuarios", data);
+  // console.log("🚀 ~ file: ducks.js ~ line 48 ~ guardarUsuario ~ dispatch", formValues);
+
+  dispatch({
+    type: GUARDAR_REGISTRO,
+    payload: [data],
+  });
+  obtenerUsuarios(dispatch);
 };
 
 export const mostrarOcultarFormulario = (show) => (dispatch) => {
