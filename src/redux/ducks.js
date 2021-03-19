@@ -1,4 +1,6 @@
 import HttpClient from "../helpers/HTTPclient";
+import { getRequest } from "../services/getRequest";
+import { postRequest } from "../services/postRequest";
 
 // Consts
 const inicialState = {
@@ -29,49 +31,25 @@ export default function reducer(state = inicialState, action) {
 
 // Actions
 export const obtenerUsuarios = async (dispatch) => {
-  try {
-    const resp = await HttpClient.get("http://localhost:3333/usuarios", {
-      responseMode: "json",
-    });
-    dispatch({
-      type: OBTENER_DATOS_JSON,
-      payload: resp.getData(),
-    });
+  const resp = await getRequest("http://localhost:3333/usuarios");
+  // console.log("🚀 ~ file: ducks.js ~ line 34 ~ obtenerUsuarios ~ resp", resp);
 
-    // const res = await fetch("http://localhost:3333/usuarios");
-    // const dataUsuarios = await res.json();
-    // console.log("obtenerUsuarios -> ", dataUsuarios);
-    // dispatch({
-    //   type: OBTENER_DATOS_JSON,
-    //   payload: dataUsuarios,
-    // });
-  } catch (error) {
-    console.error(error);
-  }
+  dispatch({
+    type: OBTENER_DATOS_JSON,
+    payload: resp,
+  });
 };
 
 export const guardarUsuario = (formValues) => async (dispatch) => {
-  console.log(
-    "🚀 ~ file: Ducks.js ~ line 48 ~ guardarUsuario ~ dispatch",
-    formValues
-  );
-  const jsonDatos = JSON.stringify(formValues);
-  try {
-    fetch("http://localhost:3333/usuarios", {
-      method: "POST",
-      body: jsonDatos,
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-    // dispatch({
-    //   type: GUARDAR_REGISTRO,
-    //   payload: [jsonDatos],
-    // })
-    obtenerUsuarios(dispatch);
-  } catch (error) {
-    console.log(error);
-  }
+  const data = JSON.stringify(formValues);
+  const request = await postRequest("http://localhost:3333/usuarios", data);
+  // console.log("🚀 ~ file: ducks.js ~ line 48 ~ guardarUsuario ~ dispatch", formValues);
+
+  dispatch({
+    type: GUARDAR_REGISTRO,
+    payload: [data],
+  });
+  obtenerUsuarios(dispatch);
 };
 
 export const mostrarOcultarFormulario = (show) => (dispatch) => {
